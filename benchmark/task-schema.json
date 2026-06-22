@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://crb-bench.org/schemas/task.schema.json",
+  "title": "CRB Task Instance",
+  "description": "Schema for a single Consumer Research Bench (CRB) task instance. v0.1.",
+  "type": "object",
+  "required": ["id", "track", "domain", "brief", "split", "validity_gates"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^crb-[a-z0-9-]+$",
+      "description": "Stable unique id, e.g. crb-consumer-matcha-uanda-01"
+    },
+    "schema_version": { "type": "string", "const": "0.1" },
+    "track": {
+      "enum": ["objective", "report"],
+      "description": "Objective = atomic task with worked ground truth. Report = open-ended memo scored by C-RACE."
+    },
+    "domain": {
+      "enum": ["consumer", "brand", "category", "culture"],
+      "description": "v0.1 uses 'consumer' only; others are roadmap."
+    },
+    "category_context": { "type": "string", "description": "e.g. beverages / matcha / RTD" },
+    "brief": { "type": "string", "description": "User-facing research question." },
+    "business_context": { "type": "string" },
+    "methodology": {
+      "enum": ["u_and_a", "occasion_mapping", "trendspotting", "brand_diagnosis", "campaign_measurement", "whitespace", "digital_ethnography", "cohort_analysis", "other"]
+    },
+    "market": { "type": "string", "description": "Geography or cohort scope." },
+    "data_window": {
+      "type": "object",
+      "properties": {
+        "start": { "type": "string", "format": "date" },
+        "end": { "type": "string", "format": "date" }
+      }
+    },
+    "source_scope": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Allowed signal source types for this task."
+    },
+    "retrosignals_snapshot": {
+      "type": "string",
+      "description": "Path/id of the frozen RetroSignals snapshot linked to this task."
+    },
+    "objective_task_type": {
+      "enum": ["find_signal", "derive_metric", "validate_claim", "attribute_driver", "define_cohort", "populate_set", "compile_dataset"],
+      "description": "Required when track = objective."
+    },
+    "output_format": { "type": "string", "description": "Number, list, probability, dataset, evidence table, memo, etc." },
+    "required_evidence": {
+      "type": "object",
+      "properties": {
+        "min_signals": { "type": "integer", "minimum": 0 },
+        "types": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "ground_truth": {
+      "type": "object",
+      "description": "Worked answer and/or evidence checklist. Required for objective track.",
+      "properties": {
+        "worked_answer": {},
+        "evidence_checklist": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "signal_id": { "type": "string" },
+              "must_include": { "type": "boolean" },
+              "note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "description": "Expert reference report. Required for report track.",
+      "properties": {
+        "author": { "type": "string" },
+        "independent": { "type": "boolean", "description": "True if the author is not employed by an evaluated vendor." },
+        "report_path": { "type": "string" }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "properties": {
+        "method": { "enum": ["binary", "range", "recall", "f1", "precision_recall_f1", "abs_prob_diff", "expert_match", "c_race"] },
+        "rubric": { "type": "string", "description": "Path to the rubric, e.g. benchmark/rubrics/c-race.md" },
+        "crace_weights": {
+          "type": "object",
+          "description": "Per-task dynamic weights across C-RACE dimensions (report track).",
+          "additionalProperties": { "type": "number" }
+        }
+      }
+    },
+    "data_neutral": {
+      "type": "boolean",
+      "description": "True for tie-or-lose tasks: specialized data is expected to give little/no advantage. At least 25% of tasks should be data_neutral."
+    },
+    "target_failure_modes": {
+      "type": "array",
+      "items": {
+        "enum": ["platform_myopia", "keyword_literalism", "shallow_listening", "consumer_brand_confusion", "viral_overgeneralization", "fabricated_verbatim", "weak_triangulation", "missed_counter_signal", "methodology_drift", "generic_insighting", "cultural_misread", "segmentation_collapse", "premature_satisficing", "data_overclaiming"]
+      },
+      "description": "Failure modes this task is designed to provoke."
+    },
+    "validity_gates": {
+      "type": "object",
+      "required": ["invalidate_if", "cap_if"],
+      "properties": {
+        "invalidate_if": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Conditions that make the run invalid (see validity-gates.md)."
+        },
+        "cap_if": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Conditions that cap the maximum score."
+        }
+      }
+    },
+    "split": { "enum": ["public", "development", "private"] }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "track": { "const": "objective" } } },
+      "then": { "required": ["objective_task_type", "ground_truth", "scoring"] }
+    },
+    {
+      "if": { "properties": { "track": { "const": "report" } } },
+      "then": { "required": ["reference", "methodology"] }
+    }
+  ]
+}

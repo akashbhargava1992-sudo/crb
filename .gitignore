@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Claude Code working memory / session handoffs
+.remember/
+
+# Source archives and scratch material (canonical content lives in the tree)
+*.zip
+files/
+Consuma Research Model Benchmarking.md

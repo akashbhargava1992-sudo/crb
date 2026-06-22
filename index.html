@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Consumer Research Bench (CRB) — Evaluating AI Agents for Consumer Research</title>
+<meta name="description" content="Consumer Research Bench (CRB): a benchmark evaluating whether AI agents can conduct consumer research — signal discovery, evidence grounding, methodology fidelity, and decision-ready synthesis." />
+<style>
+  :root{
+    --bg:#ffffff;
+    --panel:#fafafa;
+    --fg:#171717;
+    --fg-soft:#3f3f46;
+    --muted:#6b7280;
+    --faint:#9ca3af;
+    --border:#e7e7e9;
+    --border-strong:#d6d6d9;
+    --ink:#1b1b1d;
+    --ink-hover:#3a3a3e;
+    --accent:#1a56db;
+    --accent-soft:#eef2fd;
+
+    --ok:#2f8a52; --ok-bg:#eef7f0;
+    --warn:#9a6a14; --warn-bg:#fbf4e7;
+    --plan:#6b7280; --plan-bg:#f3f4f6;
+    --run:#2563a8;  --run-bg:#eef4fb;
+    --shut:#a14545; --shut-bg:#faeeee;
+
+    --serif:'Iowan Old Style','Charter','Palatino Linotype','Georgia','Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif;
+    --mono:'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+
+    --col:860px;
+    --col-wide:1000px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--sans);background:var(--bg);color:var(--fg);
+    font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:2px}
+  svg.ic{width:1em;height:1em;flex:none;vertical-align:-0.12em}
+
+  .col{max-width:var(--col);margin-inline:auto;padding-inline:24px}
+  .col-wide{max-width:var(--col-wide);margin-inline:auto;padding-inline:24px}
+  section{scroll-margin-top:24px}
+
+  /* ---------- hero ---------- */
+  .hero{text-align:center;padding:68px 0 30px}
+  .kicker{
+    font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:20px;
+  }
+  h1.title{
+    font-family:var(--serif);font-weight:600;font-size:clamp(2.2rem,5vw,3.2rem);
+    line-height:1.06;letter-spacing:-0.02em;
+  }
+  h1.title .abbr{color:var(--muted);font-weight:500}
+  .subtitle{
+    margin:18px auto 0;max-width:60ch;font-size:clamp(1rem,1.6vw,1.18rem);
+    color:var(--fg-soft);line-height:1.5;
+  }
+  .byline{
+    margin-top:18px;font-size:14px;color:var(--muted);
+  }
+  .byline b{color:var(--fg-soft);font-weight:600}
+  .metaline{
+    margin-top:8px;font-family:var(--mono);font-size:12px;color:var(--faint);
+    letter-spacing:0.02em;line-height:1.7;
+  }
+  .metaline .sep{opacity:.5;padding:0 8px}
+
+  /* action pill buttons */
+  .actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:30px}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);
+    font-size:14px;font-weight:550;line-height:1;padding:11px 17px;border-radius:999px;
+    background:var(--ink);color:#fff;border:1px solid var(--ink);cursor:pointer;
+    transition:background .14s,transform .06s,border-color .14s;text-decoration:none;white-space:nowrap;
+  }
+  .pill:hover{background:var(--ink-hover);border-color:var(--ink-hover);text-decoration:none;color:#fff}
+  .pill:active{transform:translateY(1px)}
+  .pill .ic{font-size:15px}
+  .pill .ct{font-family:var(--mono);font-size:12.5px;font-weight:600;opacity:.85;padding-left:2px}
+  .pill[aria-pressed="true"] .ic.star{color:#ffcf5a}
+
+  /* github-style stat line */
+  .statline{
+    margin-top:24px;font-family:var(--mono);font-size:12.5px;color:var(--muted);
+    letter-spacing:0.01em;line-height:1.9;
+  }
+  .statline b{color:var(--fg-soft);font-weight:600}
+  .statline .sep{opacity:.45;padding:0 9px}
+  .statline .ic{font-size:13px;vertical-align:-0.1em;color:var(--faint)}
+
+  /* ---------- section scaffold ---------- */
+  .sec{padding:40px 0;border-top:1px solid var(--border)}
+  .sec-title{
+    text-align:center;font-family:var(--serif);font-weight:600;
+    font-size:clamp(1.4rem,2.6vw,1.85rem);letter-spacing:-0.01em;line-height:1.15;
+  }
+  .sec-sub{text-align:center;color:var(--muted);font-size:14px;margin-top:8px;max-width:56ch;margin-inline:auto}
+  .sec-body{margin-top:26px}
+
+  /* ---------- abstract ---------- */
+  .abstract p{font-size:1.05rem;line-height:1.74;color:var(--fg-soft);max-width:72ch;margin-inline:auto}
+  .abstract p + p{margin-top:15px}
+  .abstract p strong{color:var(--fg);font-weight:600}
+
+  /* ---------- definition grid (contributions) ---------- */
+  .deflist{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .deflist .item{background:var(--bg);padding:18px 20px}
+  .deflist .term{display:flex;align-items:baseline;gap:9px;font-size:15px;font-weight:600;color:var(--fg)}
+  .deflist .term .n{font-family:var(--mono);font-size:11px;color:var(--faint);font-weight:500}
+  .deflist .desc{font-size:13.5px;color:var(--muted);line-height:1.5;margin-top:6px}
+
+  /* ---------- tables ---------- */
+  .table-wrap{border:1px solid var(--border);border-radius:8px;overflow:auto}
+  table{border-collapse:collapse;width:100%;font-size:14px}
+  thead th{
+    text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:0.06em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;padding:11px 16px;border-bottom:1px solid var(--border);background:var(--panel);white-space:nowrap;
+  }
+  tbody td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--fg-soft);vertical-align:middle}
+  tbody tr:last-child td{border-bottom:0}
+  td.lead{font-weight:550;color:var(--fg)}
+  .dash{font-family:var(--mono);color:var(--faint)}
+  table.lb{min-width:760px}
+
+  .pill-s{
+    display:inline-flex;align-items:center;gap:6px;font-family:var(--sans);font-size:11.5px;font-weight:550;
+    padding:2px 9px;border-radius:999px;background:var(--plan-bg);color:var(--plan);white-space:nowrap;line-height:1.5;
+  }
+  .pill-s::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+  .pill-s.published{color:var(--ok);background:var(--ok-bg)}
+  .pill-s.progress{color:var(--warn);background:var(--warn-bg)}
+  .pill-s.planned{color:var(--plan);background:var(--plan-bg)}
+  .pill-s.torun{color:var(--run);background:var(--run-bg)}
+  .pill-s.closed{color:var(--shut);background:var(--shut-bg)}
+
+  /* ---------- three-column structure ---------- */
+  .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .cols3 .c h3, .twocol .t h3{font-family:var(--mono);font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .cols3 ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .cols3 li{font-size:14px;color:var(--fg-soft);padding-left:14px;position:relative}
+  .cols3 li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--border-strong)}
+
+  /* ---------- tracks ---------- */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .twocol .t{border:1px solid var(--border);border-radius:8px;padding:22px}
+  .twocol .t .head{display:flex;align-items:baseline;gap:10px;margin-bottom:5px}
+  .twocol .t .head .ix{font-family:var(--mono);font-size:11px;color:var(--faint)}
+  .twocol .t .head h2{font-family:var(--serif);font-size:1.2rem;font-weight:600}
+  .twocol .t .lede{font-size:13.5px;color:var(--muted);margin-bottom:16px;line-height:1.5}
+  .micro{font-family:var(--mono);font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--faint);margin-bottom:9px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{font-size:12px;color:var(--fg-soft);background:var(--panel);border:1px solid var(--border);padding:4px 9px;border-radius:6px;line-height:1.3}
+  .tag.mono{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .rule{height:1px;background:var(--border);margin:16px 0}
+  .dims{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 16px}
+  .dims li{font-size:13px;color:var(--fg-soft);display:flex;gap:8px;align-items:baseline}
+  .dims li .n{font-family:var(--mono);font-size:10px;color:var(--faint)}
+
+  /* ---------- retrosignals ---------- */
+  .retro p{font-size:14.5px;color:var(--muted);line-height:1.6;max-width:70ch;margin:0 auto 16px;text-align:center}
+  .retro .tags{justify-content:center;max-width:760px;margin-inline:auto}
+  .diag{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px}
+  .diag .d{border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center}
+  .diag .d .dn{font-size:13px;font-weight:600;color:var(--fg)}
+  .diag .d .dd{font-size:11.5px;color:var(--muted);margin-top:4px;line-height:1.4}
+
+  /* ---------- validity gates ---------- */
+  .gates{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .gates .g .gl{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .gates .invalid .gl{color:var(--shut)}
+  .gates .capped .gl{color:var(--warn)}
+  .gates ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .gates li{font-size:13.5px;color:var(--fg-soft);display:flex;gap:9px;align-items:flex-start;line-height:1.45}
+  .gates li .ic{font-size:13px;margin-top:2px;flex:none}
+  .gates .invalid li .ic{color:var(--shut)}
+  .gates .capped li .ic{color:var(--warn)}
+  .gate-note{text-align:center;color:var(--muted);font-size:13.5px;max-width:60ch;margin:0 auto 22px}
+
+  /* ---------- example task ---------- */
+  .example .q{
+    font-family:var(--serif);font-size:1.25rem;font-weight:600;text-align:center;
+    color:var(--fg);max-width:24ch;margin:0 auto 6px;line-height:1.2;
+  }
+  .example .qk{text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--faint);margin-bottom:22px}
+  .example .xcols{display:grid;grid-template-columns:0.85fr 1.15fr;gap:30px;align-items:start}
+  .example h4{font-family:var(--mono);font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .reqs{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .reqs li{font-size:13px;color:var(--fg-soft);display:flex;gap:8px;align-items:baseline}
+  .reqs li .n{font-family:var(--mono);font-size:10px;color:var(--faint)}
+  .example .snote{font-size:13.5px;color:var(--fg-soft);line-height:1.6;margin-bottom:13px}
+  .example .snote b{color:var(--fg);font-weight:600}
+  .example .tags .tag{background:var(--accent-soft);border-color:#dbe5fb;color:#23408f}
+
+  /* ---------- citation ---------- */
+  .cite-line{font-family:var(--serif);font-size:15px;color:var(--fg);text-align:center;max-width:64ch;margin:0 auto 18px;line-height:1.55}
+  pre.bib{
+    font-family:var(--mono);font-size:12.5px;line-height:1.7;color:var(--fg-soft);
+    background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:18px 20px;overflow:auto;white-space:pre;max-width:680px;margin:0 auto;
+  }
+  .cite-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:18px}
+  .btn{
+    display:inline-flex;align-items:center;gap:7px;font-family:var(--sans);font-size:13px;font-weight:550;
+    padding:8px 14px;border-radius:8px;border:1px solid var(--border-strong);background:var(--bg);color:var(--fg);
+    cursor:pointer;transition:background .14s;text-decoration:none;white-space:nowrap;
+  }
+  .btn:hover{background:var(--panel);text-decoration:none;color:var(--fg)}
+  .btn .ic{font-size:14px;color:var(--muted)}
+
+  /* version history */
+  .vh{max-width:680px;margin:26px auto 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .vh summary{list-style:none;cursor:pointer;padding:13px 18px;background:var(--panel);display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:var(--fg)}
+  .vh summary::-webkit-details-marker{display:none}
+  .vh summary .ic{color:var(--muted)}
+  .vh summary .chev{margin-left:auto;color:var(--faint);transition:transform .18s}
+  .vh[open] summary .chev{transform:rotate(90deg)}
+  .vh .tl{padding:6px 18px 12px}
+  .vh .ti{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:11px 0;border-bottom:1px solid var(--border)}
+  .vh .ti:last-child{border-bottom:0}
+  .vh .tv{font-family:var(--mono);font-size:12.5px;font-weight:600;color:var(--fg);display:flex;align-items:center;gap:7px}
+  .vh .tv .dot{width:7px;height:7px;border-radius:50%;background:var(--border-strong)}
+  .vh .ti.cur .tv .dot{background:var(--ok)}
+  .vh .ti.cur .tv{color:var(--accent)}
+  .vh .td{font-size:12.5px;color:var(--muted);line-height:1.5}
+  .vh .td .w{display:block;font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:0.04em;margin-bottom:2px}
+
+  /* ---------- participate / governance ---------- */
+  .note-block{max-width:64ch;margin:0 auto;text-align:center;color:var(--muted);font-size:14.5px;line-height:1.6}
+  .note-block b{color:var(--fg-soft);font-weight:600}
+  .gov{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:9px 26px;max-width:720px;margin:22px auto 0}
+  .gov li{font-size:14px;color:var(--fg-soft);display:flex;gap:10px;align-items:flex-start;line-height:1.4}
+  .gov li .ic{color:var(--ok);font-size:15px;margin-top:2px;flex:none}
+
+  /* ---------- footer ---------- */
+  footer{padding:38px 0 50px;border-top:1px solid var(--border);text-align:center;background:var(--panel)}
+  .foot-links{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;margin-bottom:18px}
+  .foot-links a{font-size:13.5px;color:var(--fg-soft);font-weight:500}
+  .foot-note{font-size:13px;color:var(--muted);max-width:62ch;margin:0 auto;line-height:1.6}
+  .foot-meta{margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:0.02em}
+
+  /* ---------- toast ---------- */
+  #toast{
+    position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(14px);
+    background:var(--ink);color:#fff;font-size:13px;font-weight:500;padding:10px 16px;border-radius:8px;
+    display:flex;align-items:center;gap:9px;box-shadow:0 8px 30px rgba(0,0,0,.18);
+    opacity:0;pointer-events:none;transition:opacity .18s,transform .18s;z-index:100;max-width:90vw;
+  }
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  #toast .ic{color:#7fe0a3;font-size:15px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:760px){
+    .cols3{grid-template-columns:1fr;gap:24px}
+    .twocol{grid-template-columns:1fr}
+    .gates{grid-template-columns:1fr;gap:24px}
+    .example .xcols{grid-template-columns:1fr;gap:24px}
+    .diag{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:560px){
+    .deflist{grid-template-columns:1fr}
+    .dims, .reqs{grid-template-columns:1fr}
+    .gov{grid-template-columns:1fr}
+    .diag{grid-template-columns:1fr}
+    .hero{padding:48px 0 24px}
+    .metaline .sep{display:block;height:0;overflow:hidden;padding:0}
+    .col,.col-wide{padding-inline:18px}
+  }
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.77 6 19.52l.99-5.8-4.21-4.1 5.82-.85z"/></symbol>
+  <symbol id="i-star-fill" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"><path d="M12 3.5l2.6 5.27 5.82.85-4.21 4.1.99 5.8L12 16.77 6 19.52l.99-5.8-4.21-4.1 5.82-.85z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 20h16"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-gh" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.7c-2.78.62-3.37-1.22-3.37-1.22-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.55-1.14-4.55-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.36 9.36 0 0 1 12 6.84c.85 0 1.71.12 2.51.35 1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9l-.01 2.81c0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></symbol>
+  <symbol id="i-data" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="7.5" ry="3"/><path d="M4.5 5.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6M4.5 11.5v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16M8 16v-4M12 16V8M16 16v-6"/></symbol>
+  <symbol id="i-quote" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7H4a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3v3a3 3 0 0 1-3 3M19 7h-3a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h3v3a3 3 0 0 1-3 3"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M6 12h12"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8v.01"/></symbol>
+</svg>
+
+<!-- ============ HERO ============ -->
+<header id="top" class="hero">
+  <div class="col-wide">
+    <div class="kicker">Benchmark · Methodology Paper · Working Draft v0.6</div>
+    <h1 class="title">Consumer Research Bench <span class="abbr">(CRB)</span></h1>
+    <p class="subtitle">Evaluating AI agents on consumer research tasks: signal discovery, evidence grounding, methodology fidelity, and decision-ready synthesis.</p>
+    <p class="byline">Maintained by the <b>Independent CRB Working Group</b></p>
+    <p class="metaline">v0.1 Scope: Consumer domain<span class="sep">·</span>Status: Methodology published, empirical results pending</p>
+
+    <div class="actions">
+      <a href="#" class="pill js-pdf"><svg class="ic"><use href="#i-download"/></svg> Paper PDF</a>
+      <a href="#benchmark" class="pill"><svg class="ic"><use href="#i-doc"/></svg> Benchmark Spec</a>
+      <a href="https://github.com/akashbhargava1992-sudo/crb" class="pill" data-ext target="_blank" rel="noopener"><svg class="ic"><use href="#i-gh"/></svg> GitHub</a>
+      <a href="#retrosignals" class="pill"><svg class="ic"><use href="#i-data"/></svg> Dataset</a>
+      <a href="#leaderboard" class="pill"><svg class="ic"><use href="#i-chart"/></svg> Leaderboard</a>
+      <button type="button" class="pill js-star" aria-pressed="false"><svg class="ic star"><use href="#i-star"/></svg> <span class="js-star-label">Star</span> <span class="ct js-star-count">0</span></button>
+      <a href="#citation" class="pill"><svg class="ic"><use href="#i-quote"/></svg> Cite</a>
+    </div>
+
+    <p class="statline">
+      <svg class="ic"><use href="#i-star"/></svg> <b class="js-star-count">0</b> stars
+      <span class="sep">·</span><b>0</b> watching
+      <span class="sep">·</span><b>0</b> forks
+      <span class="sep">·</span>Version <b>v0.6</b>
+      <span class="sep">·</span><b>12</b> briefs / 30–40 atomic items
+      <span class="sep">·</span>Results <b>To Run</b>
+    </p>
+  </div>
+</header>
+
+<!-- ============ ABSTRACT ============ -->
+<section id="abstract" class="sec">
+  <div class="col">
+    <h2 class="sec-title">Abstract</h2>
+    <div class="sec-body abstract">
+      <p>Consumer research combines evidence collection, behavioral interpretation, qualitative synthesis, quantitative classification, and business recommendation. Existing AI benchmarks evaluate web research agents, long-form research agents, browsing agents, coding agents, and general-purpose assistants, but do not directly evaluate the capabilities specific to consumer research.</p>
+      <p><strong>Consumer Research Bench evaluates whether AI systems can transform fragmented consumer-signal data into evidence-backed consumer understanding</strong> with the interpretive depth associated with primary research and the speed of digital signal analysis.</p>
+      <p>CRB v0.1 focuses on the Consumer domain and evaluates two tracks: an Objective Track for atomic research tasks and a Report Track for open-ended consumer research synthesis. The benchmark introduces RetroSignals, a frozen consumer-signal environment, and uses a data × model ablation to separate model quality from consumer-data advantage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KEY CONTRIBUTIONS ============ -->
+<section id="contributions" class="sec">
+  <div class="col">
+    <h2 class="sec-title">Key Contributions</h2>
+    <div class="sec-body">
+      <div class="deflist">
+        <div class="item"><div class="term"><span class="n">C1</span> Consumer Research Construct</div><div class="desc">Decision-ready consumer-research quality per unit time, at a fixed evidence-grounding bar.</div></div>
+        <div class="item"><div class="term"><span class="n">C2</span> Two Evaluation Tracks</div><div class="desc">Objective atomic tasks plus open-ended report evaluation.</div></div>
+        <div class="item"><div class="term"><span class="n">C3</span> RetroSignals</div><div class="desc">A frozen consumer-signal environment for reproducible evaluation.</div></div>
+        <div class="item"><div class="term"><span class="n">C4</span> C-RACE</div><div class="desc">Reference-based, criteria-adaptive report scoring validated against human experts.</div></div>
+        <div class="item"><div class="term"><span class="n">C5</span> Data × Model Ablation</div><div class="desc">Separates the contribution of consumer-signal data from model capability.</div></div>
+        <div class="item"><div class="term"><span class="n">C6</span> Validity Gates</div><div class="desc">Hard failure rules for fabricated quotes, unsupported statistics, and untraceable evidence.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATUS ============ -->
+<section id="status" class="sec">
+  <div class="col">
+    <h2 class="sec-title">Benchmark Status</h2>
+    <p class="sec-sub">A current, honest view. No empirical scores are released yet.</p>
+    <div class="sec-body">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Component</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="lead">Methodology paper</td><td><span class="pill-s published">Published draft</span></td></tr>
+            <tr><td class="lead">v0.1 task design</td><td><span class="pill-s progress">In Progress</span></td></tr>
+            <tr><td class="lead">Public sample tasks</td><td><span class="pill-s planned">Planned</span></td></tr>
+            <tr><td class="lead">Private test set</td><td><span class="pill-s planned">Planned</span></td></tr>
+            <tr><td class="lead">Leaderboard</td><td><span class="pill-s closed">Not Yet Open</span></td></tr>
+            <tr><td class="lead">Empirical results</td><td><span class="pill-s torun">To Run</span></td></tr>
+            <tr><td class="lead">External submissions</td><td><span class="pill-s closed">Not Yet Open</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRUCTURE ============ -->
+<section id="benchmark" class="sec">
+  <div class="col">
+    <h2 class="sec-title">Benchmark Structure</h2>
+    <p class="sec-sub">A research brief flows through evaluation to a scored, diagnostic output.</p>
+    <div class="sec-body">
+      <div class="cols3">
+        <div class="c"><h3>Input</h3><ul><li>Research brief</li><li>Business context</li><li>Methodology</li><li>RetroSignals environment</li></ul></div>
+        <div class="c"><h3>Evaluation</h3><ul><li>Objective Track</li><li>Report Track</li><li>Evidence grounding</li><li>Human validation</li><li>Data × model ablation</li></ul></div>
+        <div class="c"><h3>Output</h3><ul><li>Scores</li><li>Diagnostics</li><li>Validity gates</li><li>Leaderboard</li><li>Benchmark report</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRACKS ============ -->
+<section id="tracks" class="sec">
+  <div class="col">
+    <h2 class="sec-title">Evaluation Tracks</h2>
+    <div class="sec-body">
+      <div class="twocol">
+        <div class="t">
+          <div class="head"><span class="ix">Track A</span><h2>Objective Track</h2></div>
+          <p class="lede">Scores atomic research capabilities against expert-worked ground truth.</p>
+          <div class="micro">Example tasks</div>
+          <div class="tags">
+            <span class="tag">Find Signal</span><span class="tag">Derive Metric</span><span class="tag">Validate Claim</span>
+            <span class="tag">Define Cohort</span><span class="tag">Populate Set</span><span class="tag">Compile Dataset</span>
+          </div>
+          <div class="rule"></div>
+          <div class="micro">Metrics</div>
+          <div class="tags">
+            <span class="tag mono">Binary accuracy</span><span class="tag mono">Recall / F1</span>
+            <span class="tag mono">Probability difference</span><span class="tag mono">Expert-judged match</span>
+          </div>
+        </div>
+        <div class="t">
+          <div class="head"><span class="ix">Track B</span><h2>Report Track</h2></div>
+          <p class="lede">Scores open-ended consumer research outputs using C-RACE.</p>
+          <div class="micro">Scoring dimensions</div>
+          <ul class="dims">
+            <li><span class="n">D1</span> Comprehensiveness</li>
+            <li><span class="n">D2</span> Consumer Insight Depth</li>
+            <li><span class="n">D3</span> Methodology Fidelity</li>
+            <li><span class="n">D4</span> Evidence &amp; Traceability</li>
+            <li><span class="n">D5</span> Quant–Qual Integration</li>
+            <li><span class="n">D6</span> Contextual Fidelity</li>
+            <li><span class="n">D7</span> Decision Readiness</li>
+            <li><span class="n">D8</span> Readability &amp; Structure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RETROSIGNALS ============ -->
+<section id="retrosignals" class="sec">
+  <div class="col">
+    <h2 class="sec-title">RetroSignals</h2>
+    <div class="sec-body retro">
+      <p>RetroSignals is a frozen, task-linked consumer-signal environment designed to make consumer research agent evaluation reproducible over time.</p>
+      <div class="tags">
+        <span class="tag">Social posts</span><span class="tag">Comments &amp; replies</span><span class="tag">Reviews</span>
+        <span class="tag">Marketplace content</span><span class="tag">Community discussions</span><span class="tag">Search-result pages</span>
+        <span class="tag">Creator content</span><span class="tag">Video / audio transcripts</span><span class="tag">Brand &amp; competitor context docs</span>
+      </div>
+      <div class="diag">
+        <div class="d"><div class="dn">Data Breadth</div><div class="dd">Coverage across signal types and sources.</div></div>
+        <div class="d"><div class="dn">Data Depth</div><div class="dd">Granularity and richness within each source.</div></div>
+        <div class="d"><div class="dn">Data Condition</div><div class="dd">Noise, recency, and integrity of the signal.</div></div>
+        <div class="d"><div class="dn">Relevant Signal Density</div><div class="dd">Share of signal that bears on the brief.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VALIDITY GATES ============ -->
+<section id="validity" class="sec">
+  <div class="col">
+    <h2 class="sec-title">Validity Gates</h2>
+    <div class="sec-body">
+      <p class="gate-note">Some failures do not merely reduce score. They invalidate a run or cap its maximum score.</p>
+      <div class="gates">
+        <div class="g invalid">
+          <div class="gl"><svg class="ic"><use href="#i-x"/></svg> Invalidates the run</div>
+          <ul>
+            <li><svg class="ic"><use href="#i-x"/></svg> Fabricated consumer quotes</li>
+            <li><svg class="ic"><use href="#i-x"/></svg> Fabricated statistics</li>
+            <li><svg class="ic"><use href="#i-x"/></svg> Non-existent cited evidence</li>
+            <li><svg class="ic"><use href="#i-x"/></svg> No source-level traceability for central claims</li>
+          </ul>
+        </div>
+        <div class="g capped">
+          <div class="gl"><svg class="ic"><use href="#i-cap"/></svg> Caps the maximum score</div>
+          <ul>
+            <li><svg class="ic"><use href="#i-cap"/></svg> Confusing brand-owned content with consumer signal</li>
+            <li><svg class="ic"><use href="#i-cap"/></svg> Treating news or investor commentary as consumer behavior</li>
+            <li><svg class="ic"><use href="#i-cap"/></svg> Overgeneralizing from one viral post</li>
+            <li><svg class="ic"><use href="#i-cap"/></svg> Ignoring contradictory evidence</li>
+            <li><svg class="ic"><use href="#i-cap"/></svg> Producing generic insights</li>
+            <li><svg class="ic"><use href="#i-cap"/></svg> Recommending actions without evidence</li>
+            <li><svg class="ic"><use href="#i-cap"/></svg> Failing to follow the intended methodology</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXAMPLE TASK ============ -->
+<section id="example" class="sec">
+  <div class="col">
+    <h2 class="sec-title">Example Task</h2>
+    <div class="sec-body example">
+      <div class="qk">Report Track · Sample Brief</div>
+      <p class="q">Why are young urban consumers choosing matcha over coffee?</p>
+      <div class="xcols" style="margin-top:6px">
+        <div>
+          <h4>Required output</h4>
+          <ul class="reqs">
+            <li><span class="n">01</span> Executive summary</li>
+            <li><span class="n">02</span> Key motivations</li>
+            <li><span class="n">03</span> Consumption occasions</li>
+            <li><span class="n">04</span> Consumer cohorts</li>
+            <li><span class="n">05</span> Barriers &amp; tensions</li>
+            <li><span class="n">06</span> Evidence table</li>
+            <li><span class="n">07</span> Opportunity spaces</li>
+            <li><span class="n">08</span> Brand implications</li>
+            <li><span class="n">09</span> Confidence assessment</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Strong answer characteristics</h4>
+          <p class="snote">A strong answer goes beyond <b>“matcha is healthy and trendy.”</b> It identifies specific patterns — each grounded in inspectable signal:</p>
+          <div class="tags">
+            <span class="tag">Clean energy</span><span class="tag">Mid-afternoon productivity</span><span class="tag">Aesthetic self-expression</span>
+            <span class="tag">Coffee replacement</span><span class="tag">Wellness signaling</span><span class="tag">At-home ritualization</span>
+            <span class="tag">Premiumization</span><span class="tag">Creator influence</span><span class="tag">Taste / price / authenticity barriers</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEADERBOARD ============ -->
+<section id="leaderboard" class="sec">
+  <div class="col-wide">
+    <h2 class="sec-title">Leaderboard</h2>
+    <p class="sec-sub">Preview of the scoring surface. No estimated scores are shown.</p>
+    <div class="sec-body">
+      <div class="table-wrap">
+        <table class="lb">
+          <thead>
+            <tr><th>Rank</th><th>System</th><th>Objective</th><th>Report</th><th>Grounding</th><th>Fabrication</th><th>Time-to-Ready</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="dash">—</td><td class="lead">Consumer Research Model A</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td><span class="pill-s torun">To Run</span></td></tr>
+            <tr><td class="dash">—</td><td class="lead">Consumer Research Model B</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td><span class="pill-s torun">To Run</span></td></tr>
+            <tr><td class="dash">—</td><td class="lead">Deep Research Agent</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td><span class="pill-s torun">To Run</span></td></tr>
+            <tr><td class="dash">—</td><td class="lead">Social Listening Workflow</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td><span class="pill-s torun">To Run</span></td></tr>
+            <tr><td class="dash">—</td><td class="lead">Human Researcher</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td><span class="pill-s torun">To Run</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sec-sub" style="margin-top:14px">Empirical scores will be published after the v0.1 benchmark run.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CITATION ============ -->
+<section id="citation" class="sec">
+  <div class="col">
+    <h2 class="sec-title">Citation</h2>
+    <div class="sec-body">
+      <p class="cite-line" id="citation-text">Independent CRB Working Group. “Consumer Research Bench: Evaluating AI Agents for Consumer Research.” Working Draft v0.6, 2026.</p>
+      <pre class="bib" id="bibtex-text">@misc{crb2026,
+  title={Consumer Research Bench: Evaluating AI Agents for Consumer Research},
+  author={Independent CRB Working Group},
+  year={2026},
+  note={Working Draft v0.6}
+}</pre>
+      <div class="cite-actions">
+        <a href="#" class="btn js-pdf"><svg class="ic"><use href="#i-download"/></svg> Download PDF</a>
+        <button type="button" class="btn" id="dl-bibtex"><svg class="ic"><use href="#i-download"/></svg> Download BibTeX</button>
+        <button type="button" class="btn" data-copy data-copy-target="#citation-text"><svg class="ic"><use href="#i-copy"/></svg> Copy Citation</button>
+      </div>
+
+      <details class="vh" id="version-history">
+        <summary><svg class="ic"><use href="#i-clock"/></svg> Version History <svg class="ic chev"><use href="#i-arrow"/></svg></summary>
+        <div class="tl">
+          <div class="ti cur"><div class="tv"><span class="dot"></span>v0.6</div><div class="td"><span class="w">Current · Working Draft</span>Construct, two tracks, RetroSignals, C-RACE, and validity gates documented.</div></div>
+          <div class="ti"><div class="tv"><span class="dot"></span>v0.5</div><div class="td"><span class="w">Methodology Draft</span>Report Track dimensions and C-RACE scoring drafted.</div></div>
+          <div class="ti"><div class="tv"><span class="dot"></span>v0.4</div><div class="td"><span class="w">Methodology Draft</span>RetroSignals environment scope defined.</div></div>
+          <div class="ti"><div class="tv"><span class="dot"></span>v0.3</div><div class="td"><span class="w">Methodology Draft</span>Objective Track task taxonomy outlined.</div></div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTICIPATE ============ -->
+<section id="participate" class="sec">
+  <div class="col">
+    <h2 class="sec-title">Participate</h2>
+    <div class="sec-body">
+      <p class="note-block"><b>Submissions are not yet open.</b> CRB v0.1 is finalizing task design and the private held-out test set. When submissions open, any consumer-research system — agentic, workflow-based, or human baseline — will be evaluated under identical conditions: register intent, validate on public sample tasks, submit to the blind held-out set, then disclose vendor and data sources before leaderboard entry. Follow the repository for the call for submissions.</p>
+      <div class="cite-actions" style="margin-top:20px">
+        <a href="https://github.com/akashbhargava1992-sudo/crb" class="btn" data-ext target="_blank" rel="noopener"><svg class="ic"><use href="#i-gh"/></svg> Watch the repository</a>
+        <a href="https://github.com/akashbhargava1992-sudo/crb/issues" class="btn" data-ext target="_blank" rel="noopener"><svg class="ic"><use href="#i-quote"/></svg> Contact the working group</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GOVERNANCE ============ -->
+<section id="governance" class="sec">
+  <div class="col">
+    <h2 class="sec-title">Governance</h2>
+    <p class="sec-sub">CRB is intended to be governed independently of any vendor or data provider.</p>
+    <div class="sec-body">
+      <ul class="gov">
+        <li><svg class="ic"><use href="#i-check"/></svg> Independent task authorship</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> Blind grading</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> Pre-registered criteria</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> Private held-out test set</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> Public sample tasks</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> Human validation</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> Vendor and data-provider disclosure</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> Rolling benchmark refresh</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="col-wide">
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#abstract">Paper</a>
+      <a href="#retrosignals">Dataset</a>
+      <a href="#benchmark">Evaluation Harness</a>
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#governance">Governance</a>
+      <a href="https://github.com/akashbhargava1992-sudo/crb" data-ext target="_blank" rel="noopener">GitHub</a>
+      <a href="#participate">Contact</a>
+    </nav>
+    <p class="foot-note">CRB is a benchmark for evaluating whether AI systems can conduct consumer research, not merely search the web.</p>
+    <p class="foot-meta">Independent CRB Working Group · Working Draft v0.6 · 2026</p>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite"><svg class="ic"><use href="#i-check"/></svg><span id="toast-msg">Done</span></div>
+
+<script>
+(function(){
+  "use strict";
+  var $  = function(s,r){return (r||document).querySelector(s);};
+  var $$ = function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+
+  var toastEl = $('#toast'), toastMsg = $('#toast-msg'), toastTimer = null;
+  function toast(msg){
+    toastMsg.textContent = msg; toastEl.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 1800);
+  }
+  function copyText(text){
+    if(navigator.clipboard && navigator.clipboard.writeText){ return navigator.clipboard.writeText(text); }
+    return new Promise(function(resolve,reject){
+      try{
+        var ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        var ok=document.execCommand('copy'); document.body.removeChild(ta);
+        ok?resolve():reject();
+      }catch(e){ reject(e); }
+    });
+  }
+
+  /* star toggle — hero pill + inline stat line stay in sync */
+  var BASE=0, starred=false;
+  var counts=$$('.js-star-count'), labels=$$('.js-star-label'), btns=$$('.js-star');
+  function renderStars(){
+    var n=BASE+(starred?1:0);
+    counts.forEach(function(el){ el.textContent=String(n); });
+    labels.forEach(function(el){ el.textContent=starred?'Starred':'Star'; });
+    btns.forEach(function(b){
+      b.setAttribute('aria-pressed', starred?'true':'false');
+      var u=b.querySelector('svg.star use'); if(u) u.setAttribute('href', starred?'#i-star-fill':'#i-star');
+    });
+  }
+  btns.forEach(function(b){ b.addEventListener('click', function(){ starred=!starred; renderStars(); toast(starred?'Starred CRB — thanks for following':'Removed star'); }); });
+
+  /* copy citation */
+  $$('[data-copy]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var node=$(b.getAttribute('data-copy-target')); var text=node?node.textContent.trim():'';
+      if(!text) return;
+      copyText(text).then(function(){ toast('Citation copied to clipboard'); }).catch(function(){ toast('Copy failed — select manually'); });
+    });
+  });
+
+  /* real BibTeX download */
+  var dlBib=$('#dl-bibtex');
+  if(dlBib){
+    dlBib.addEventListener('click', function(){
+      var bib=$('#bibtex-text').textContent;
+      try{
+        var blob=new Blob([bib],{type:'application/x-bibtex'}); var url=URL.createObjectURL(blob);
+        var a=document.createElement('a'); a.href=url; a.download='crb.bib';
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+        toast('Downloaded crb.bib');
+      }catch(e){ copyText(bib).then(function(){ toast('BibTeX copied to clipboard'); }); }
+    });
+  }
+
+  /* placeholder PDF + external links */
+  $$('.js-pdf').forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); toast('Paper PDF — Working Draft v0.6 (placeholder)'); }); });
+  $$('[data-ext]').forEach(function(b){ b.addEventListener('click', function(e){ if(b.getAttribute('href')==='#'){ e.preventDefault(); toast('Repository link is a placeholder in this draft'); } }); });
+
+  renderStars();
+})();
+</script>
+</body>
+</html>

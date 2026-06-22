@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "Consumer Research Bench (CRB): Evaluating AI Agents for Consumer Research"
+message: "If you use CRB, please cite it as below."
+type: dataset
+authors:
+  - name: "Independent CRB Working Group"
+version: "0.6"
+date-released: "2026-06-22"
+license: CC-BY-4.0
+url: "https://crb-bench.org"
+repository-code: "https://github.com/REPLACE_ME/crb"
+abstract: >-
+  Consumer Research Bench (CRB) is a benchmark for evaluating AI agents on
+  consumer research tasks. It defines its construct as decision-ready
+  consumer-research quality per unit time, at a fixed evidence-grounding bar.
+  CRB uses two scored tracks — an Objective Track scored against expert-worked
+  ground truth, and a Report Track scored by C-RACE, a reference-based,
+  criteria-adaptive framework validated against human experts — plus
+  RetroSignals, a frozen consumer-signal environment enabling a data x model
+  ablation. CRB is designed to be administered independently. Working Draft v0.6
+  (preprint); results pending first run.
+keywords:
+  - benchmark
+  - consumer research
+  - LLM evaluation
+  - deep research agents
+  - market intelligence
