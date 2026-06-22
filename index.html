@@ -304,7 +304,7 @@
     <p class="metaline">v0.1 Scope: Consumer domain<span class="sep">·</span>Status: Methodology published, empirical results pending</p>
 
     <div class="actions">
-      <a href="#" class="pill js-pdf"><svg class="ic"><use href="#i-download"/></svg> Paper PDF</a>
+      <a href="paper/CRB-v0.6.pdf" class="pill" target="_blank" rel="noopener"><svg class="ic"><use href="#i-download"/></svg> Paper PDF</a>
       <a href="#benchmark" class="pill"><svg class="ic"><use href="#i-doc"/></svg> Benchmark Spec</a>
       <a href="https://github.com/akashbhargava1992-sudo/crb" class="pill" data-ext target="_blank" rel="noopener"><svg class="ic"><use href="#i-gh"/></svg> GitHub</a>
       <a href="#retrosignals" class="pill"><svg class="ic"><use href="#i-data"/></svg> Dataset</a>
@@ -561,7 +561,7 @@
   note={Working Draft v0.6}
 }</pre>
       <div class="cite-actions">
-        <a href="#" class="btn js-pdf"><svg class="ic"><use href="#i-download"/></svg> Download PDF</a>
+        <a href="paper/CRB-v0.6.pdf" class="btn" download><svg class="ic"><use href="#i-download"/></svg> Download PDF</a>
         <button type="button" class="btn" id="dl-bibtex"><svg class="ic"><use href="#i-download"/></svg> Download BibTeX</button>
         <button type="button" class="btn" data-copy data-copy-target="#citation-text"><svg class="ic"><use href="#i-copy"/></svg> Copy Citation</button>
       </div>
@@ -693,8 +693,7 @@
     });
   }
 
-  /* placeholder PDF + external links */
-  $$('.js-pdf').forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); toast('Paper PDF — Working Draft v0.6 (placeholder)'); }); });
+  /* any still-placeholder external links fall back to a toast */
   $$('[data-ext]').forEach(function(b){ b.addEventListener('click', function(e){ if(b.getAttribute('href')==='#'){ e.preventDefault(); toast('Repository link is a placeholder in this draft'); } }); });
 
   renderStars();
