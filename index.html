@@ -309,14 +309,14 @@
       <a href="https://github.com/akashbhargava1992-sudo/crb" class="pill" data-ext target="_blank" rel="noopener"><svg class="ic"><use href="#i-gh"/></svg> GitHub</a>
       <a href="#retrosignals" class="pill"><svg class="ic"><use href="#i-data"/></svg> Dataset</a>
       <a href="#leaderboard" class="pill"><svg class="ic"><use href="#i-chart"/></svg> Leaderboard</a>
-      <button type="button" class="pill js-star" aria-pressed="false"><svg class="ic star"><use href="#i-star"/></svg> <span class="js-star-label">Star</span> <span class="ct js-star-count">0</span></button>
+      <a href="https://github.com/akashbhargava1992-sudo/crb" class="pill js-star" target="_blank" rel="noopener" aria-label="Star CRB on GitHub"><svg class="ic star"><use href="#i-star"/></svg> <span class="js-star-label">Star</span> <span class="ct js-star-count">0</span></a>
       <a href="#citation" class="pill"><svg class="ic"><use href="#i-quote"/></svg> Cite</a>
     </div>
 
     <p class="statline">
       <svg class="ic"><use href="#i-star"/></svg> <b class="js-star-count">0</b> stars
-      <span class="sep">·</span><b>0</b> watching
-      <span class="sep">·</span><b>0</b> forks
+      <span class="sep">·</span><b class="js-watch-count">0</b> watching
+      <span class="sep">·</span><b class="js-fork-count">0</b> forks
       <span class="sep">·</span>Version <b>v0.6</b>
       <span class="sep">·</span><b>12</b> briefs / 30–40 atomic items
       <span class="sep">·</span>Results <b>To Run</b>
@@ -655,19 +655,22 @@
     });
   }
 
-  /* star toggle — hero pill + inline stat line stay in sync */
-  var BASE=0, starred=false;
-  var counts=$$('.js-star-count'), labels=$$('.js-star-label'), btns=$$('.js-star');
-  function renderStars(){
-    var n=BASE+(starred?1:0);
-    counts.forEach(function(el){ el.textContent=String(n); });
-    labels.forEach(function(el){ el.textContent=starred?'Starred':'Star'; });
-    btns.forEach(function(b){
-      b.setAttribute('aria-pressed', starred?'true':'false');
-      var u=b.querySelector('svg.star use'); if(u) u.setAttribute('href', starred?'#i-star-fill':'#i-star');
-    });
+  /* live GitHub stats — the Star pill links to the repo; counts come from the public API */
+  var GH_REPO='akashbhargava1992-sudo/crb';
+  function setCounts(sel, val){ if(typeof val!=='number') return; $$(sel).forEach(function(el){ el.textContent=String(val); }); }
+  function loadGitHubStats(){
+    if(!window.fetch) return;
+    fetch('https://api.github.com/repos/'+GH_REPO, { headers:{ 'Accept':'application/vnd.github+json' } })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        if(!d) return;
+        setCounts('.js-star-count', d.stargazers_count);
+        setCounts('.js-watch-count', d.subscribers_count);
+        setCounts('.js-fork-count', d.forks_count);
+      })
+      .catch(function(){ /* offline or rate-limited — keep the static fallback numbers */ });
   }
-  btns.forEach(function(b){ b.addEventListener('click', function(){ starred=!starred; renderStars(); toast(starred?'Starred CRB — thanks for following':'Removed star'); }); });
+  loadGitHubStats();
 
   /* copy citation */
   $$('[data-copy]').forEach(function(b){
@@ -695,8 +698,6 @@
 
   /* any still-placeholder external links fall back to a toast */
   $$('[data-ext]').forEach(function(b){ b.addEventListener('click', function(e){ if(b.getAttribute('href')==='#'){ e.preventDefault(); toast('Repository link is a placeholder in this draft'); } }); });
-
-  renderStars();
 })();
 </script>
 </body>
