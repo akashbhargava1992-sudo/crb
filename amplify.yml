@@ -1,0 +1,12 @@
+version: 1
+frontend:
+  phases:
+    build:
+      commands: []
+  artifacts:
+    # Static site: no build step. Serve the repo root (index.html lives here).
+    baseDirectory: /
+    files:
+      - '**/*'
+  cache:
+    paths: []
