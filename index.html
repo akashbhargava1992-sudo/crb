@@ -132,11 +132,6 @@
 
   /* ---------- provisional pilot results ---------- */
   .prov-head{text-align:center;font-family:var(--serif);font-weight:600;font-size:1.2rem;margin-top:6px}
-  .prov-note{
-    max-width:72ch;margin:14px auto 0;border:1px solid #ecdcbf;background:var(--warn-bg);color:var(--warn);
-    border-radius:8px;padding:12px 16px;font-size:13px;line-height:1.6;text-align:left;
-  }
-  .prov-note b{font-weight:700}
   .results-fig{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--bg);margin-top:20px}
   .results-fig img{display:block;width:100%;height:auto;background:#fff}
   .results-fig figcaption{padding:12px 16px;border-top:1px solid var(--border);font-size:13px;color:var(--muted);line-height:1.5}
@@ -560,12 +555,6 @@
 
       <div class="rule" style="margin:34px 0 0"></div>
       <h3 class="prov-head" style="margin-top:26px">Provisional pilot results</h3>
-      <p class="prov-note">
-        <b>Provisional &amp; vendor-operated.</b> These pilots were run and scored by Consuma, which is
-        itself one of the evaluated systems — single briefs, LLM-as-judge (no human panel), and no frozen
-        RetroSignals corpus. They are illustrative, <b>not</b> independently verified CRB scores: read the
-        ordering and failure modes, not the decimals.
-      </p>
 
       <figure class="results-fig">
         <img src="results/crb-ro-leaderboard.svg" loading="lazy" alt="Report-only leaderboard: Consuma, Claude, Gemini and ChatGPT scored on comprehensiveness, insight depth, method fidelity and evidence.">
@@ -575,11 +564,6 @@
       <figure class="results-fig">
         <img src="results/social-listening.svg" loading="lazy" alt="Social-listening comparison: Consuma versus Winnin, Sprinklr and iGenie across four consumer-data dimensions.">
         <figcaption><b>Social listening.</b> Consuma compared with social-listening tools across four consumer-data dimensions — data universe, signal-to-noise, AI insights, and measurement &amp; enrichments — from real queries run through each tool.</figcaption>
-      </figure>
-
-      <figure class="results-fig">
-        <img src="results/researchbench-slide.svg" loading="lazy" alt="ResearchBench cross-test view: overall scores plus a per-test table across Listening, Secondary, Consumer and Brand for Consuma, ChatGPT and Claude.">
-        <figcaption><b>ResearchBench — cross-test view.</b> A Consuma positioning view: overall score plus a per-test breakdown (Listening, Secondary, Consumer, Brand). Work in progress — Consumer and Listening are measured; Secondary and Brand are directional.</figcaption>
       </figure>
     </div>
   </div>
