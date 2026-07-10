@@ -129,6 +129,10 @@
   td.lead{font-weight:550;color:var(--fg)}
   .dash{font-family:var(--mono);color:var(--faint)}
   table.lb{min-width:760px}
+  .lb td.num{font-family:var(--mono);font-size:13px;color:var(--fg);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .lb .sysmodel{display:block;font-family:var(--mono);font-size:11px;color:var(--faint);font-weight:400;margin-top:2px}
+  .lb .fab{display:inline-flex;align-items:center;gap:5px;color:var(--ok);font-size:12.5px;white-space:nowrap}
+  .lb .fab .ic{font-size:13px}
 
   /* ---------- pilot result charts ---------- */
   .results-fig{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--bg);margin-top:20px}
@@ -534,7 +538,7 @@
 <section id="leaderboard" class="sec">
   <div class="col-wide">
     <h2 class="sec-title">Leaderboard</h2>
-    <p class="sec-sub">Preview of the scoring surface. No estimated scores are shown.</p>
+    <p class="sec-sub">First pilot run — one report-only brief, Consuma-operated, LLM-as-judge. Provisional; canonical v0.1 scores to follow.</p>
     <div class="sec-body">
       <div class="table-wrap">
         <table class="lb">
@@ -542,15 +546,15 @@
             <tr><th>Rank</th><th>System</th><th>Objective</th><th>Report</th><th>Grounding</th><th>Fabrication</th><th>Time-to-Ready</th><th>Status</th></tr>
           </thead>
           <tbody>
-            <tr><td class="dash">—</td><td class="lead">Consumer Research Model A</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td><span class="pill-s torun">To Run</span></td></tr>
-            <tr><td class="dash">—</td><td class="lead">Consumer Research Model B</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td><span class="pill-s torun">To Run</span></td></tr>
-            <tr><td class="dash">—</td><td class="lead">Deep Research Agent</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td><span class="pill-s torun">To Run</span></td></tr>
-            <tr><td class="dash">—</td><td class="lead">Social Listening Workflow</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td><span class="pill-s torun">To Run</span></td></tr>
+            <tr><td class="num">1</td><td class="lead">Consuma <span class="sysmodel">Rapid 2</span></td><td class="dash">—</td><td class="num">8.28</td><td class="num">9.0</td><td><span class="fab"><svg class="ic"><use href="#i-check"/></svg>None</span></td><td class="num">&lt;30 min</td><td><span class="pill-s progress">Pilot</span></td></tr>
+            <tr><td class="num">2</td><td class="lead">Claude <span class="sysmodel">Opus 4.8 Max</span></td><td class="dash">—</td><td class="num">5.72</td><td class="num">4.0</td><td><span class="fab"><svg class="ic"><use href="#i-check"/></svg>None</span></td><td class="dash">n/d</td><td><span class="pill-s progress">Pilot</span></td></tr>
+            <tr><td class="num">3</td><td class="lead">Gemini <span class="sysmodel">3.5 Pro</span></td><td class="dash">—</td><td class="num">5.67</td><td class="num">4.5</td><td><span class="fab"><svg class="ic"><use href="#i-check"/></svg>None</span></td><td class="dash">n/d</td><td><span class="pill-s progress">Pilot</span></td></tr>
+            <tr><td class="num">4</td><td class="lead">ChatGPT <span class="sysmodel">GPT 5.5 High</span></td><td class="dash">—</td><td class="num">4.80</td><td class="num">3.5</td><td><span class="fab"><svg class="ic"><use href="#i-check"/></svg>None</span></td><td class="dash">n/d</td><td><span class="pill-s progress">Pilot</span></td></tr>
             <tr><td class="dash">—</td><td class="lead">Human Researcher</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td class="dash">—</td><td><span class="pill-s torun">To Run</span></td></tr>
           </tbody>
         </table>
       </div>
-      <p class="sec-sub" style="margin-top:14px">Empirical scores will be published after the v0.1 benchmark run.</p>
+      <p class="sec-sub" style="margin-top:14px">Provisional pilot — Report Track only (Objective Track not run), scored by LLM-as-judge and operated by Consuma (an evaluated system). Scores are 0–10; n/d = not disclosed. Canonical v0.1 scores follow the full benchmark run.</p>
 
       <div class="rule" style="margin:34px 0 4px"></div>
 
