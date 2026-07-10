@@ -44,6 +44,7 @@ CRB v0.1 deliberately reports **no single overall score** until both tracks are 
 ├── retrosignals/
 │   └── data-policy.md              # frozen environment + privacy/responsible-use policy
 ├── GOVERNANCE.md                   # independent administration, conflict-of-interest rules
+├── SUBMISSIONS.md                  # open submission model (run → PR → verify → merge) + template
 └── CITATION.cff                    # machine-readable citation
 ```
 
@@ -61,6 +62,8 @@ The immediate priorities are (1) authoring the first reference reports and task 
 ## Contribute
 
 CRB is a living preprint and an open call. We are recruiting **independent task authors and reviewers** — senior consumer-insights researchers, brand/category experts, and cultural analysts who are not employed by evaluated vendors. Independence is what makes the benchmark credible; see [GOVERNANCE.md](GOVERNANCE.md). Open an issue or contact the Working Group to get involved.
+
+**Submitting results is open to anyone.** Run the benchmark and open a PR with your results plus the artifacts that reproduce them; a maintainer reviews, independently re-runs or re-scores, and merges it (tagged *Verified* vs *Community*). See **[SUBMISSIONS.md](SUBMISSIONS.md)** for the full model — required disclosure, held-out handling, and the results template.
 
 ## Citation
 

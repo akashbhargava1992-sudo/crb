@@ -559,11 +559,14 @@
 <section id="participate" class="sec">
   <div class="col">
     <h2 class="sec-title">Participate</h2>
+    <p class="sec-sub">CRB is open to anyone — any consumer-research system, agentic, workflow-based, or human baseline.</p>
     <div class="sec-body">
-      <p class="note-block"><b>Submissions are not yet open.</b> CRB v0.1 is finalizing task design and the private held-out test set. When submissions open, any consumer-research system — agentic, workflow-based, or human baseline — will be evaluated under identical conditions: register intent, validate on public sample tasks, submit to the blind held-out set, then disclose vendor and data sources before leaderboard entry. Follow the repository for the call for submissions.</p>
+      <p class="note-block"><b>Open, PR-based submissions.</b> Fork the repo, run the benchmark, and open a pull request with your results and the artifacts that reproduce them — a maintainer reviews it, independently re-runs or re-scores it against the <a href="https://github.com/akashbhargava1992-sudo/crb/blob/main/benchmark/rubrics/c-race.md" data-ext target="_blank" rel="noopener">rubric</a> and <a href="https://github.com/akashbhargava1992-sudo/crb/blob/main/benchmark/rubrics/validity-gates.md" data-ext target="_blank" rel="noopener">validity gates</a>, then merges it. Entries we re-verify are tagged <b>Verified</b>; self-reported ones are listed as <b>Community</b>. Every entry discloses its models, vendor, and data sources, and the private held-out set is scored by a neutral custodian — so first-party entries can't tune to labels they can't see.</p>
+      <p class="note-block" style="margin-top:12px"><b>Status.</b> The spec, rubrics, and task schema are public; the sample tasks and submission harness are being released. You can start now — read the <a href="https://github.com/akashbhargava1992-sudo/crb/blob/main/SUBMISSIONS.md" data-ext target="_blank" rel="noopener">submission guide</a>, review the rubrics, or propose a task via PR.</p>
       <div class="cite-actions" style="margin-top:20px">
+        <a href="https://github.com/akashbhargava1992-sudo/crb/blob/main/SUBMISSIONS.md" class="btn" data-ext target="_blank" rel="noopener"><svg class="ic"><use href="#i-doc"/></svg> Read the submission guide</a>
+        <a href="https://github.com/akashbhargava1992-sudo/crb/pulls" class="btn" data-ext target="_blank" rel="noopener"><svg class="ic"><use href="#i-gh"/></svg> Open a submission PR</a>
         <a href="https://github.com/akashbhargava1992-sudo/crb" class="btn" data-ext target="_blank" rel="noopener"><svg class="ic"><use href="#i-gh"/></svg> Watch the repository</a>
-        <a href="https://github.com/akashbhargava1992-sudo/crb/issues" class="btn" data-ext target="_blank" rel="noopener"><svg class="ic"><use href="#i-quote"/></svg> Contact the working group</a>
       </div>
     </div>
   </div>
@@ -583,6 +586,8 @@
         <li><svg class="ic"><use href="#i-check"/></svg> Public sample tasks</li>
         <li><svg class="ic"><use href="#i-check"/></svg> Human validation</li>
         <li><svg class="ic"><use href="#i-check"/></svg> Vendor and data-provider disclosure</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> Verified &amp; self-reported result tiers</li>
+        <li><svg class="ic"><use href="#i-check"/></svg> Independent re-scoring of submissions</li>
         <li><svg class="ic"><use href="#i-check"/></svg> Rolling benchmark refresh</li>
       </ul>
     </div>
