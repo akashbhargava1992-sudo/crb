@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 770 540" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" role="img" aria-label="CRB-RO report-only leaderboard">
+<rect width="770" height="540" fill="#ffffff"/>
+<text x="385" y="42" font-family="'Iowan Old Style','Charter','Palatino Linotype','Georgia',serif" font-size="23" font-weight="600" fill="#171717" text-anchor="middle">CRB-RO: Report-Only Leaderboard</text>
+<text x="385" y="68" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="12.5" fill="#6b7280" text-anchor="middle">Consumer-research reports on one brief &#183; column height = overall score &#183; segments = weighted dimensions</text>
+<line x1="80" y1="474.0" x2="540" y2="474.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="478.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">0</text>
+<line x1="80" y1="400.0" x2="540" y2="400.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="404.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">2</text>
+<line x1="80" y1="326.0" x2="540" y2="326.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="330.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">4</text>
+<line x1="80" y1="252.0" x2="540" y2="252.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="256.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">6</text>
+<line x1="80" y1="178.0" x2="540" y2="178.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="182.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">8</text>
+<line x1="80" y1="104.0" x2="540" y2="104.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="108.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">10</text>
+<rect x="98.5" y="411.1" width="78" height="62.9" fill="#cfd2d6" stroke="#ffffff" stroke-width="1.5"><title>Consuma Rapid Research — Comprehensiveness: 8.5/10 × 0.20 = 1.70</title></rect>
+<rect x="98.5" y="337.1" width="78" height="74.0" fill="#a3a8b0" stroke="#ffffff" stroke-width="1.5"><title>Consuma Rapid Research — Insight Depth: 8.0/10 × 0.25 = 2.00</title></rect>
+<rect x="98.5" y="267.7" width="78" height="69.4" fill="#5c6470" stroke="#ffffff" stroke-width="1.5"><title>Consuma Rapid Research — Method Fidelity: 7.5/10 × 0.25 = 1.88</title></rect>
+<rect x="98.5" y="167.8" width="78" height="99.9" fill="#1a56db" stroke="#ffffff" stroke-width="1.5"><title>Consuma Rapid Research — Evidence: 9.0/10 × 0.30 = 2.70</title></rect>
+<text x="137.5" y="141.8" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="middle">#1</text>
+<text x="137.5" y="158.8" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#171717" text-anchor="middle">8.28</text>
+<text x="137.5" y="498.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="14" font-weight="600" fill="#171717" text-anchor="middle">Consuma</text>
+<text x="137.5" y="514.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="11" fill="#9ca3af" text-anchor="middle">Rapid Research</text>
+<rect x="213.5" y="422.2" width="78" height="51.8" fill="#cfd2d6" stroke="#ffffff" stroke-width="1.5"><title>Claude Research — Comprehensiveness: 7.0/10 × 0.20 = 1.40</title></rect>
+<rect x="213.5" y="362.1" width="78" height="60.1" fill="#a3a8b0" stroke="#ffffff" stroke-width="1.5"><title>Claude Research — Insight Depth: 6.5/10 × 0.25 = 1.62</title></rect>
+<rect x="213.5" y="306.6" width="78" height="55.5" fill="#5c6470" stroke="#ffffff" stroke-width="1.5"><title>Claude Research — Method Fidelity: 6.0/10 × 0.25 = 1.50</title></rect>
+<rect x="213.5" y="262.2" width="78" height="44.4" fill="#1a56db" stroke="#ffffff" stroke-width="1.5"><title>Claude Research — Evidence: 4.0/10 × 0.30 = 1.20</title></rect>
+<text x="252.5" y="236.2" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="middle">#2</text>
+<text x="252.5" y="253.2" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#171717" text-anchor="middle">5.72</text>
+<text x="252.5" y="498.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="14" font-weight="600" fill="#171717" text-anchor="middle">Claude</text>
+<text x="252.5" y="514.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="11" fill="#9ca3af" text-anchor="middle">Research</text>
+<rect x="328.5" y="429.6" width="78" height="44.4" fill="#cfd2d6" stroke="#ffffff" stroke-width="1.5"><title>Gemini Deep Research — Comprehensiveness: 6.0/10 × 0.20 = 1.20</title></rect>
+<rect x="328.5" y="369.5" width="78" height="60.1" fill="#a3a8b0" stroke="#ffffff" stroke-width="1.5"><title>Gemini Deep Research — Insight Depth: 6.5/10 × 0.25 = 1.62</title></rect>
+<rect x="328.5" y="314.0" width="78" height="55.5" fill="#5c6470" stroke="#ffffff" stroke-width="1.5"><title>Gemini Deep Research — Method Fidelity: 6.0/10 × 0.25 = 1.50</title></rect>
+<rect x="328.5" y="264.0" width="78" height="50.0" fill="#1a56db" stroke="#ffffff" stroke-width="1.5"><title>Gemini Deep Research — Evidence: 4.5/10 × 0.30 = 1.35</title></rect>
+<text x="367.5" y="238.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="middle">#3</text>
+<text x="367.5" y="255.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#171717" text-anchor="middle">5.67</text>
+<text x="367.5" y="498.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="14" font-weight="600" fill="#171717" text-anchor="middle">Gemini</text>
+<text x="367.5" y="514.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="11" fill="#9ca3af" text-anchor="middle">Deep Research</text>
+<rect x="443.5" y="437.0" width="78" height="37.0" fill="#cfd2d6" stroke="#ffffff" stroke-width="1.5"><title>ChatGPT Deep Research — Comprehensiveness: 5.0/10 × 0.20 = 1.00</title></rect>
+<rect x="443.5" y="386.1" width="78" height="50.9" fill="#a3a8b0" stroke="#ffffff" stroke-width="1.5"><title>ChatGPT Deep Research — Insight Depth: 5.5/10 × 0.25 = 1.38</title></rect>
+<rect x="443.5" y="335.2" width="78" height="50.9" fill="#5c6470" stroke="#ffffff" stroke-width="1.5"><title>ChatGPT Deep Research — Method Fidelity: 5.5/10 × 0.25 = 1.38</title></rect>
+<rect x="443.5" y="296.4" width="78" height="38.9" fill="#1a56db" stroke="#ffffff" stroke-width="1.5"><title>ChatGPT Deep Research — Evidence: 3.5/10 × 0.30 = 1.05</title></rect>
+<text x="482.5" y="270.4" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="middle">#4</text>
+<text x="482.5" y="287.4" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#171717" text-anchor="middle">4.80</text>
+<text x="482.5" y="498.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="14" font-weight="600" fill="#171717" text-anchor="middle">ChatGPT</text>
+<text x="482.5" y="514.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="11" fill="#9ca3af" text-anchor="middle">Deep Research</text>
+<line x1="80" y1="474.0" x2="540" y2="474.0" stroke="#3f3f46" stroke-width="1.2"/>
+<text x="26" y="289.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="10.5" fill="#6b7280" text-anchor="middle" transform="rotate(-90 26 289.0)">S int (0-10)</text>
+<text x="566" y="215.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="10" fill="#6b7280" letter-spacing="0.05em">DIMENSION &#215; WEIGHT</text>
+<rect x="566" y="230.0" width="13" height="13" rx="2" fill="#cfd2d6" stroke="rgba(0,0,0,.08)"/>
+<text x="586" y="241.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="12.5" fill="#3f3f46">Comprehensiveness &#215;0.20</text>
+<rect x="566" y="262.0" width="13" height="13" rx="2" fill="#a3a8b0" stroke="rgba(0,0,0,.08)"/>
+<text x="586" y="273.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="12.5" fill="#3f3f46">Insight Depth &#215;0.25</text>
+<rect x="566" y="294.0" width="13" height="13" rx="2" fill="#5c6470" stroke="rgba(0,0,0,.08)"/>
+<text x="586" y="305.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="12.5" fill="#3f3f46">Method Fidelity &#215;0.25</text>
+<rect x="566" y="326.0" width="13" height="13" rx="2" fill="#1a56db" stroke="rgba(0,0,0,.08)"/>
+<text x="586" y="337.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="12.5" fill="#3f3f46">Evidence &#215;0.30</text>
+</svg>

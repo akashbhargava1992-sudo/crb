@@ -8,3 +8,12 @@
 *.zip
 files/
 Consuma Research Model Benchmarking.md
+
+# Confidential / vendor-internal working material — NEVER publish.
+# Contains the client brief (market share, pricing, strategy), third-party verbatim
+# tool outputs, source decks, and vendor-positioning generators. Only the curated,
+# client-text-free /results/ gallery is tracked.
+Benchmarking 1st Run/
+evaluations/
+comparisons/
+proposals/

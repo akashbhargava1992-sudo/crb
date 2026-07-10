@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 770 540" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" role="img" aria-label="CRB social listening comparison">
+<rect width="770" height="540" fill="#ffffff"/>
+<text x="385" y="42" font-family="'Iowan Old Style','Charter','Palatino Linotype','Georgia',serif" font-size="23" font-weight="600" fill="#171717" text-anchor="middle">CRB: Social Listening Leaderboard</text>
+<text x="385" y="68" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="12.5" fill="#6b7280" text-anchor="middle">Social-listening tools on the consumer-data dimensions &#183; column height = overall score &#183; segments = weighted dimensions</text>
+<line x1="80" y1="474.0" x2="540" y2="474.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="478.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">0</text>
+<line x1="80" y1="400.0" x2="540" y2="400.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="404.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">2</text>
+<line x1="80" y1="326.0" x2="540" y2="326.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="330.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">4</text>
+<line x1="80" y1="252.0" x2="540" y2="252.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="256.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">6</text>
+<line x1="80" y1="178.0" x2="540" y2="178.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="182.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">8</text>
+<line x1="80" y1="104.0" x2="540" y2="104.0" stroke="#e7e7e9" stroke-width="1"/>
+<text x="66" y="108.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="end">10</text>
+<rect x="98.5" y="424.1" width="78" height="50.0" fill="#cfd2d6" stroke="#ffffff" stroke-width="1.5"><title>Consuma &#183; Measurement &amp; Enrichments: 9.0/10 &#215; 0.15 = 1.35</title></rect>
+<rect x="98.5" y="340.8" width="78" height="83.2" fill="#a3a8b0" stroke="#ffffff" stroke-width="1.5"><title>Consuma &#183; AI Insights: 9.0/10 &#215; 0.25 = 2.25</title></rect>
+<rect x="98.5" y="257.6" width="78" height="83.2" fill="#5c6470" stroke="#ffffff" stroke-width="1.5"><title>Consuma &#183; Signal-to-Noise: 9.0/10 &#215; 0.25 = 2.25</title></rect>
+<rect x="98.5" y="134.5" width="78" height="123.0" fill="#1a56db" stroke="#ffffff" stroke-width="1.5"><title>Consuma &#183; Data Universe: 9.5/10 &#215; 0.35 = 3.33</title></rect>
+<text x="137.5" y="108.5" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="middle">#1</text>
+<text x="137.5" y="125.5" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#171717" text-anchor="middle">9.18</text>
+<text x="137.5" y="498.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="14" font-weight="600" fill="#171717" text-anchor="middle">Consuma</text>
+<rect x="213.5" y="457.4" width="78" height="16.7" fill="#cfd2d6" stroke="#ffffff" stroke-width="1.5"><title>Winnin &#183; Measurement &amp; Enrichments: 3.0/10 &#215; 0.15 = 0.45</title></rect>
+<rect x="213.5" y="406.5" width="78" height="50.9" fill="#a3a8b0" stroke="#ffffff" stroke-width="1.5"><title>Winnin &#183; AI Insights: 5.5/10 &#215; 0.25 = 1.38</title></rect>
+<rect x="213.5" y="351.0" width="78" height="55.5" fill="#5c6470" stroke="#ffffff" stroke-width="1.5"><title>Winnin &#183; Signal-to-Noise: 6.0/10 &#215; 0.25 = 1.50</title></rect>
+<rect x="213.5" y="305.7" width="78" height="45.3" fill="#1a56db" stroke="#ffffff" stroke-width="1.5"><title>Winnin &#183; Data Universe: 3.5/10 &#215; 0.35 = 1.23</title></rect>
+<text x="252.5" y="279.6" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="middle">#2</text>
+<text x="252.5" y="296.6" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#171717" text-anchor="middle">4.55</text>
+<text x="252.5" y="498.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="14" font-weight="600" fill="#171717" text-anchor="middle">Winnin</text>
+<rect x="328.5" y="443.5" width="78" height="30.5" fill="#cfd2d6" stroke="#ffffff" stroke-width="1.5"><title>Sprinklr &#183; Measurement &amp; Enrichments: 5.5/10 &#215; 0.15 = 0.82</title></rect>
+<rect x="328.5" y="406.5" width="78" height="37.0" fill="#a3a8b0" stroke="#ffffff" stroke-width="1.5"><title>Sprinklr &#183; AI Insights: 4.0/10 &#215; 0.25 = 1.00</title></rect>
+<rect x="328.5" y="374.1" width="78" height="32.4" fill="#5c6470" stroke="#ffffff" stroke-width="1.5"><title>Sprinklr &#183; Signal-to-Noise: 3.5/10 &#215; 0.25 = 0.88</title></rect>
+<rect x="328.5" y="309.4" width="78" height="64.8" fill="#1a56db" stroke="#ffffff" stroke-width="1.5"><title>Sprinklr &#183; Data Universe: 5.0/10 &#215; 0.35 = 1.75</title></rect>
+<text x="367.5" y="283.4" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="middle">#3</text>
+<text x="367.5" y="300.4" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#171717" text-anchor="middle">4.45</text>
+<text x="367.5" y="498.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="14" font-weight="600" fill="#171717" text-anchor="middle">Sprinklr</text>
+<rect x="443.5" y="451.8" width="78" height="22.2" fill="#cfd2d6" stroke="#ffffff" stroke-width="1.5"><title>iGenie &#183; Measurement &amp; Enrichments: 4.0/10 &#215; 0.15 = 0.60</title></rect>
+<rect x="443.5" y="405.6" width="78" height="46.2" fill="#a3a8b0" stroke="#ffffff" stroke-width="1.5"><title>iGenie &#183; AI Insights: 5.0/10 &#215; 0.25 = 1.25</title></rect>
+<rect x="443.5" y="373.2" width="78" height="32.4" fill="#5c6470" stroke="#ffffff" stroke-width="1.5"><title>iGenie &#183; Signal-to-Noise: 3.5/10 &#215; 0.25 = 0.88</title></rect>
+<rect x="443.5" y="314.9" width="78" height="58.3" fill="#1a56db" stroke="#ffffff" stroke-width="1.5"><title>iGenie &#183; Data Universe: 4.5/10 &#215; 0.35 = 1.57</title></rect>
+<text x="482.5" y="288.9" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="11" fill="#6b7280" text-anchor="middle">#4</text>
+<text x="482.5" y="305.9" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="15" font-weight="700" fill="#171717" text-anchor="middle">4.30</text>
+<text x="482.5" y="498.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="14" font-weight="600" fill="#171717" text-anchor="middle">iGenie</text>
+<line x1="80" y1="474.0" x2="540" y2="474.0" stroke="#3f3f46" stroke-width="1.2"/>
+<text x="26" y="289.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="10.5" fill="#6b7280" text-anchor="middle" transform="rotate(-90 26 289.0)">Score (0-10)</text>
+<text x="560" y="215.0" font-family="'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace" font-size="10" fill="#6b7280" letter-spacing="0.05em">DIMENSION &#215; WEIGHT</text>
+<rect x="560" y="230.0" width="13" height="13" rx="2" fill="#1a56db" stroke="rgba(0,0,0,.08)"/>
+<text x="580" y="241.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="12" fill="#3f3f46">Data Universe &#215;0.35</text>
+<rect x="560" y="262.0" width="13" height="13" rx="2" fill="#5c6470" stroke="rgba(0,0,0,.08)"/>
+<text x="580" y="273.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="12" fill="#3f3f46">Signal-to-Noise &#215;0.25</text>
+<rect x="560" y="294.0" width="13" height="13" rx="2" fill="#a3a8b0" stroke="rgba(0,0,0,.08)"/>
+<text x="580" y="305.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="12" fill="#3f3f46">AI Insights &#215;0.25</text>
+<rect x="560" y="326.0" width="13" height="13" rx="2" fill="#cfd2d6" stroke="rgba(0,0,0,.08)"/>
+<text x="580" y="337.0" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="12" fill="#3f3f46">Measurement &amp; Enrich. &#215;0.15</text>
+<text x="385" y="528" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif" font-size="11" fill="#9ca3af" text-anchor="middle">Comparison based on real queries run through each tool across the four consumer-data dimensions.</text>
+</svg>

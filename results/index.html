@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CRB — Pilot Results (Provisional)</title>
+<meta name="robots" content="noindex">
+<style>
+:root{
+  --fg:#171717; --fg-soft:#3f3f46; --muted:#6b7280; --faint:#9ca3af;
+  --border:#e7e7e9; --accent:#1a56db; --panel:#fafafa; --bg:#ffffff;
+  --warn-bg:#fff7ed; --warn-bd:#fed7aa; --warn-fg:#9a3412;
+  --serif:'Iowan Old Style','Charter','Palatino Linotype','Georgia',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',system-ui,sans-serif;
+  --mono:'SF Mono','JetBrains Mono','IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:960px;margin:0 auto;padding:44px 24px 64px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.5rem,3vw,2.1rem);margin:0 0 6px}
+.sub{color:var(--muted);font-size:15px;margin:0 0 22px}
+.banner{border:1px solid var(--warn-bd);background:var(--warn-bg);color:var(--warn-fg);
+  border-radius:10px;padding:12px 16px;font-size:13.5px;margin:0 0 30px}
+.banner b{font-weight:700}
+figure{margin:0 0 40px;border:1px solid var(--border);border-radius:12px;background:var(--bg);overflow:hidden}
+figure img{width:100%;height:auto;display:block;background:#fff}
+figcaption{padding:14px 18px;border-top:1px solid var(--border)}
+figcaption h2{font-family:var(--serif);font-weight:600;font-size:1.15rem;margin:0 0 4px}
+figcaption p{margin:0;color:var(--fg-soft);font-size:13.5px}
+figcaption .dl{margin-top:8px;font-size:12.5px}
+a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+.foot{margin-top:14px;border-top:1px solid var(--border);padding-top:16px;color:var(--muted);font-size:12.5px}
+@media (prefers-color-scheme:dark){
+  :root{--fg:#f4f4f5;--fg-soft:#d4d4d8;--muted:#9ca3af;--faint:#6b7280;--border:#27272a;--panel:#18181b;--bg:#0b0b0c;
+        --warn-bg:#2a1a0a;--warn-bd:#7c3a12;--warn-fg:#fdba74}
+  figure img{background:#fff}
+}
+</style></head>
+<body><div class="wrap">
+
+<h1>CRB — Pilot Results</h1>
+<p class="sub">Provisional consumer-research comparisons from the Consumer Research Bench pilot.</p>
+
+<div class="banner">
+  <b>Provisional &amp; vendor-operated.</b> These pilots were run and scored by <b>Consuma</b>, which is
+  itself one of the evaluated systems. They are <b>not</b> independently verified CRB benchmark results:
+  single briefs, LLM-as-judge (no human panel), no frozen RetroSignals corpus. Treat the <em>ordering and
+  failure-mode findings</em> as directional, not the decimals. See the
+  <a href="../">CRB benchmark spec</a> for the canonical methodology.
+</div>
+
+<figure>
+  <img src="crb-ro-leaderboard.svg" alt="CRB-RO report-only leaderboard: Consuma, Claude, Gemini, ChatGPT scored on comprehensiveness, insight, method and evidence.">
+  <figcaption>
+    <h2>Report-Only Leaderboard (CRB-RO)</h2>
+    <p>Four AI consumer-research tools scored on one report-only brief across four weighted dimensions
+      (comprehensiveness, insight depth, method fidelity, evidence). Column height = overall score; the
+      blue cap is consumer-signal evidence — the discriminator.</p>
+    <p class="dl"><a href="crb-ro-leaderboard.png">PNG</a> &middot; <a href="crb-ro-leaderboard.svg">SVG</a></p>
+  </figcaption>
+</figure>
+
+<figure>
+  <img src="social-listening.svg" alt="Social-listening comparison: Consuma versus Winnin, Sprinklr and iGenie across four consumer-data dimensions.">
+  <figcaption>
+    <h2>Social Listening</h2>
+    <p>Consuma compared with social-listening tools across four consumer-data dimensions — data universe,
+      signal-to-noise, AI insights, and measurement &amp; enrichments. Comparison based on real queries run
+      through each tool.</p>
+    <p class="dl"><a href="social-listening.png">PNG</a> &middot; <a href="social-listening.svg">SVG</a></p>
+  </figcaption>
+</figure>
+
+<figure>
+  <img src="researchbench-slide.svg" alt="ResearchBench comparison: overall scores and a per-test table across Listening, Secondary, Consumer and Brand.">
+  <figcaption>
+    <h2>ResearchBench — cross-test view</h2>
+    <p>A Consuma positioning view: overall score plus a per-test breakdown (Listening, Secondary, Consumer,
+      Brand) across Consuma, ChatGPT and Claude. Work in progress; scores are partly measured (Consumer,
+      Listening) and partly directional (Secondary, Brand).</p>
+    <p class="dl"><a href="researchbench-slide.png">PNG</a> &middot; <a href="researchbench-slide.svg">SVG</a>
+      &middot; components: <a href="researchbench-chart.png">chart</a> / <a href="researchbench-table.png">table</a></p>
+  </figcaption>
+</figure>
+
+<div class="foot">
+  Consumer Research Bench &middot; provisional pilot artifacts. Underlying briefs, raw tool outputs, and
+  source data are withheld for client-confidentiality and third-party-content reasons.
+</div>
+
+</div></body></html>
